@@ -1,10 +1,13 @@
+[![NuGet version (Abstractions.PropertyAccessor)](https://img.shields.io/nuget/v/Abstractions.PropertyAccessor)](https://www.nuget.org/packages/Abstractions.PropertyAccessor/)
+
+
 # PropertyAccessor
 
 `PropertyAccessor` is a high-performance wrapper around `PropertyInfo` that enables fast property get/set operations using compiled delegates. This avoids the overhead of traditional reflection and provides fallback mechanisms when compilation is not possible.
 
 ---
 
-## ✅ Features
+## Features
 
 - Fast property access using delegates
 - Built-in default value caching for common value types
@@ -13,7 +16,14 @@
 
 ---
 
-## 🚀 Creating a PropertyAccessor
+
+## Installation
+Add the NuGet package
+```powershell
+dotnet add package Abstractions.PropertyAccessor
+```
+
+## Creating a PropertyAccessor
 
 ```csharp
 PropertyInfo property = typeof(User).GetProperty("Name");
@@ -22,7 +32,7 @@ IPropertyAccessor accessor = PropertyAccessor.Create(property);
 
 ---
 
-## 🛠️ Usage
+## Usage
 
 ```csharp
 PropertyInfo property = typeof(User).GetProperty("Name");
@@ -42,7 +52,7 @@ accessor.ClearValue(user);
 
 ---
 
-## 💡 Default Value Handling
+## Default Value Handling
 
 `PropertyAccessor` caches and provides default values for:
 
@@ -52,7 +62,7 @@ accessor.ClearValue(user);
 
 ---
 
-## 🔍 Reflection Fallback
+## Reflection Fallback
 
 If delegate creation fails, `PropertyAccessor` will fall back to standard reflection:
 In this mode, property values are accessed using reflection, which is slower but ensures the operation still completes. The fallback reason is recorded, allowing you to monitor when and why reflection fallback is used.
@@ -67,7 +77,7 @@ if (accessor.UsesReflectionFallback)
 
 ---
 
-## ⚙️ Internal Optimization
+## Internal Optimization
 
 - Uses static caches for default values and type combinations
 - Compiles delegates at runtime for each property
@@ -75,7 +85,7 @@ if (accessor.UsesReflectionFallback)
 
 ---
 
-## 🧪 Example: Mapping with PropertyAccessor
+## Example: Mapping with PropertyAccessor
 
 ```csharp
 var source = new User { Name = "John" };
@@ -87,6 +97,6 @@ nameAccessor.SetValue(target, nameAccessor.GetValue(source));
 
 ---
 
-## 🧼 License
+## License
 
 MIT or use freely in your project.
